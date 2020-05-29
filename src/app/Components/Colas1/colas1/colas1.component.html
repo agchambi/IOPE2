@@ -1,0 +1,61 @@
+    <fieldset>
+    
+    <!-- Form Name -->
+    <legend>MAT 252 Investigacion de Operaciones II</legend>
+    
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="">λ</label>  
+      <div class="col-md-4">
+      <input [(ngModel)]="cola.A" id="A" name="" type="text" placeholder="λ" class="form-control input-md">
+        
+      </div>
+    </div>
+    
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="">u</label>  
+      <div class="col-md-4">
+      <input  [(ngModel)]="cola.U" id="U" name="" type="text" placeholder="u" class="form-control input-md">
+        
+      </div>
+    </div>
+    
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="">K</label>  
+      <div class="col-md-4">
+      <input  [(ngModel)]="cola.K" id="K" name="" type="text" placeholder="K" class="form-control input-md">
+        
+      </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="">Calcular</label>
+        <div class="col-md-4">
+          <button id="" name="" class="btn btn-primary" (click)="Algoritmo()">Calcular</button>
+        </div>
+      </div>
+    
+      <div class="form-group">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">P</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of P; let i=index">
+                <th scope="row"> {{i}}
+                </th>
+                <td>{{item}}</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    
+      
+    </fieldset>
+    
