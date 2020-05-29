@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "ModeloColas": {
@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ModeloColas"
+    }
+  },
+  "defaultProject": "ModeloColas",
+  "cli": {
+    "analytics": "53147bf1-b1d0-413b-a310-4dbf28496948"
+  }
 }

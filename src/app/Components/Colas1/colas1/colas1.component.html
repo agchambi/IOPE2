@@ -1,32 +1,32 @@
     <fieldset>
-    
+
     <!-- Form Name -->
     <legend>MAT 252 Investigacion de Operaciones II</legend>
-    
+
     <!-- Text input-->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="">λ</label>  
+      <label class="col-md-4 control-label" for="">λ</label>
       <div class="col-md-4">
       <input [(ngModel)]="cola.A" id="A" name="" type="text" placeholder="λ" class="form-control input-md">
-        
+
       </div>
     </div>
-    
+
     <!-- Text input-->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="">u</label>  
+      <label class="col-md-4 control-label" for="">u</label>
       <div class="col-md-4">
       <input  [(ngModel)]="cola.U" id="U" name="" type="text" placeholder="u" class="form-control input-md">
-        
+
       </div>
     </div>
-    
+
     <!-- Text input-->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="">K</label>  
+      <label class="col-md-4 control-label" for="">K</label>
       <div class="col-md-4">
       <input  [(ngModel)]="cola.K" id="K" name="" type="text" placeholder="K" class="form-control input-md">
-        
+
       </div>
     </div>
 
@@ -36,7 +36,42 @@
           <button id="" name="" class="btn btn-primary" (click)="Algoritmo()">Calcular</button>
         </div>
       </div>
-    
+      <div class="form-group">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Variable</th>
+                <th>Valor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>RHO</td>
+                <td>{{ro}}</td>
+              </tr>
+              <tr>
+                <td>λefectivo</td>
+                <td>{{Aef}}</td>
+              </tr>
+              <tr>
+                <td>L</td>
+                <td>{{L}}</td>
+              </tr>
+              <tr>
+                <td>Lq</td>
+                <td>{{Lq}}</td>
+              </tr>
+              <tr>
+                <td>W</td>
+                <td>{{W}}</td>
+              </tr>
+              <tr>
+                <td>Wq</td>
+                <td>{{Wq}}</td>
+              </tr>
+            </tbody>
+            </table>
+      </div>
       <div class="form-group">
         <table class="table">
             <thead>
@@ -50,12 +85,10 @@
                 <th scope="row"> {{i}}
                 </th>
                 <td>{{item}}</td>
-                <td></td>
               </tr>
             </tbody>
           </table>
       </div>
-    
-      
+
+
     </fieldset>
-    
