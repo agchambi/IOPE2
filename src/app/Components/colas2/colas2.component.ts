@@ -19,78 +19,110 @@ export class Colas2Component implements OnInit {
     u:null,
     K:null
   };
-  ro=0;
+  Rho=0;
   Aef=0;
-  Ls=0;
   L=0;
   Lq=0;
   W=0;
-  Ws=0;
   Wq=0;
-  pn=0;
-  c=0;
   P:any;
   //Fin Variables
   Algoritmo()
   {
-    var P=[];
-    this.ro=this.cola.A/(this.cola.s*this.cola.u);
-    console.log(this.cola);
-    if(this.ro!=1)
+    this.Probabilidades();
+    this.cola_MMsK();
+  }
+
+  cola_MMsK() {
+    let Lq;
+    let L;
+    let Aef;
+    let W;
+    let Wq;
+    let rho=this.cola.A/(this.cola.s*this.cola.u);
+    let aux=this.cola.A/this.cola.u;
+    let s=this.cola.s;
+    let k=this.cola.K;
+    let sum1=0;
+    let sum2=0;
+    if(rho!=1)
     {
-      let N=0;
-      let p0=0;
-      let a=0;
-      let b=0;
-      if(this.cola.A==0)
+      Lq=((this.P[0]*Math.pow(aux,s)*rho))/(this.factorial(s)*Math.pow((1-rho),2))
+    *((1-Math.pow(rho,k-s))-(((k-s)*Math.pow(rho,(k-s))*(1-rho))));
+    for(let n=0;n<=(s-1);n++)
+    {
+      sum1+=(n*this.P[n]);
+      sum2+=(this.P[n]);
+    }
+    L=(sum1+Lq+s)*sum2;
+    console.log("L");
+    console.log(sum2);
+    Aef=this.cola.A*(1-this.P[k]);
+    Wq=Lq/Aef;
+    W=L/Aef;
+    this.Rho=rho;
+    this.Aef=Aef;
+    this.L=L;
+    this.Lq=Lq;
+    this.W=W;
+    this.Wq=Wq;
+    }
+    else{
+      alert("El RHO es: "+rho+ " por lo tanto la cola Explota");
+      alert("Calculando por la otra formula");
+      for(let n=0;n<=k;n++)
       {
-       N=this.cola.K+this.cola.s-1;
+        sum1+=(n*this.P[n]);
       }
-      else{}
-      for(let n=0;n<=this.cola.s;n++)
+      for(let n=s;n<=k;n++)
       {
-        console.log(n);
-        a+=this.factorial(this.cola.K)/(this.factorial(this.cola.K-n)*this.factorial(n))*Math.pow((this.cola.A/this.cola.u),n);
-
+        sum2+=(n-s)*this.P[n];
       }
-      for(let n1=this.cola.s+1;n1<=this.cola.K;n1++)
+      L=sum1;
+      Lq=sum2;
+      Aef=this.cola.A*(1-this.P[k]);
+      Wq=Lq/Aef;
+      W=L/Aef;
+      this.Rho=rho;
+      this.Aef=Aef;
+      this.L=L;
+      this.Lq=Lq;
+      this.W=W;
+      this.Wq=Wq;
+    }
+  }
+  Probabilidades(){
+    let p0;
+    var P=[];
+    let rho=this.cola.A/(this.cola.s*this.cola.u);
+    let s=this.cola.s;
+    let sum1=0;
+    let sum2=0;
+    let k=this.cola.K;
+    let aux=(this.cola.A/this.cola.u);
+    for(let n=0;n<=s; n++)
+    {
+      sum1+=(Math.pow(aux,n)/this.factorial(n))+((Math.pow(aux,s)/this.factorial(s)));
+    }
+    for(let n=s+1;n<=k;n++)
+    {
+      sum2+=Math.pow(rho,(n-s));
+    }
+    p0=Math.pow(sum1*sum2,-1);
+    P.push(p0);
+    let aux1=0;
+    for(let n=1;n<=k;n++)
+    {
+      if(n<=s)
       {
-        console.log(n1);
-        b+=this.factorial(this.cola.K)/(this.factorial(this.cola.K-n1))*(1/(this.factorial(this.cola.s)*(Math.pow(this.cola.s,n1-this.cola.s))))*Math.pow((this.cola.A/this.cola.u),n1);
-      }
-      console.log("a");
-      console.log(a);
-      console.log("b");
-      console.log(b);
-      p0=1/(a+b);
-      console.log("P0");
-      console.log(p0);
-      P.push(p0);
-      let aux=0;
-      if(N<=this.cola.s && N>=0)
-      {
-        for(;N<=this.cola.s;N++){
-          aux=(this.factorial(this.cola.K)/(this.factorial(this.cola.K-N)*this.factorial(N)))*(Math.pow(this.ro,N))*P[0];
-          P.push(aux);
-        }
-
+        aux1=(Math.pow(aux,n)/this.factorial(n))*p0;
+        P.push(aux1);
       }
       else
       {
-        aux=this.factorial(this.cola.K)/(this.factorial(this.cola.K-N))*(1/(this.factorial(this.cola.s)*(Math.pow(this.cola.s,N-this.cola.s))))*Math.pow((this.cola.A/this.cola.u),N);
-        P.push(aux);
+        aux1=(Math.pow(aux,n)/(this.factorial(s)*Math.pow(s,n-s))*p0);
+        P.push(aux1);
       }
-      this.Lq=(1/this.factorial(this.cola.s))*Math.pow((this.cola.A/this.cola.u),this.cola.s)*
-      (this.ro/Math.pow((1-this.ro),2))*P[0]*((1-Math.pow(this.ro,this.cola.K-this.cola.s))-(this.cola.K-this.cola.s)
-      *(Math.pow(this.ro,this.cola.K-this.cola.s))*(1-this.ro));
-      for(let n=0;n<=this.cola.K;n++)
-      {
-        this.Ls+=n*P[n];
-      }
-      this.Aef=this.cola.A*(this.cola.K-this.Ls);
-      this.Ws=this.Ls/this.Aef;
-      this.Wq=this.Lq/this.Aef;
-
     }
     this.P=P;
   }
