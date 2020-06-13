@@ -18,5 +18,11 @@ export class NavbarComponent implements OnInit {
   Modelo2(){
     this.router.navigate(['/Modelo2']);
   }
+  Modelo3(){
+    this.router.navigate(['/Modelo3']);
+  }
+  Modelo4(){
+
+  }
 
 }

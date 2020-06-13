@@ -1,0 +1,90 @@
+<fieldset>
+    <!-- Form Name -->
+    <legend>MODELO M/M/1/K</legend>
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="">λ</label>
+      <div class="col-md-4">
+      <input [(ngModel)]="cola.A" id="A" name="" type="text" placeholder="λ" class="form-control input-md">
+
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="">u</label>
+      <div class="col-md-4">
+      <input  [(ngModel)]="cola.u" id="U" name="" type="text" placeholder="u" class="form-control input-md">
+
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="">s</label>
+      <div class="col-md-4">
+      <input  [(ngModel)]="cola.s" id="s" name="" type="text" placeholder="K" class="form-control input-md">
+
+      </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="">Calcular</label>
+        <div class="col-md-4">
+          <button id="" name="" class="btn btn-primary" (click)="Algoritmo()">Calcular</button>
+        </div>
+      </div>
+      <div class="form-group">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Variable</th>
+                <th>Valor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>RHO</td>
+                <td>{{ro}}</td>
+              </tr>
+              <tr>
+                <td>λefectivo</td>
+                <td>{{Aef}}</td>
+              </tr>
+              <tr>
+                <td>L</td>
+                <td>{{L}}</td>
+              </tr>
+              <tr>
+                <td>Lq</td>
+                <td>{{Lq}}</td>
+              </tr>
+              <tr>
+                <td>W</td>
+                <td>{{W}}</td>
+              </tr>
+              <tr>
+                <td>Wq</td>
+                <td>{{Wq}}</td>
+              </tr>
+            </tbody>
+            </table>
+      </div>
+      <div class="form-group">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">NRO</th>
+                <th scope="col">P (Probabilidad)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of P; let i=index">
+                <th scope="row"> {{i}}
+                </th>
+                <td>{{item}}</td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </fieldset>
